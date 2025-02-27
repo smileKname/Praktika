@@ -1,1 +1,2 @@
-Привет, CI/CD!
+#!/bin/bash
+echo "Привет, CI/CD!"
