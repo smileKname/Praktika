@@ -3,10 +3,10 @@ name: Автоматический CI/CD
 on:
   push:
     branches:
-      - main  # Запускать только при пуше в main
+      - main  
   pull_request:
     branches:
-      - main  # Запускать при создании PR в main
+      - main  
 
 jobs:
   build:
@@ -15,7 +15,13 @@ jobs:
       - name: Checkout репозитория
         uses: actions/checkout@v3
 
-      - name: Запуск тестового скрипта
-        run: |
-          chmod +x script.sh
-          ./script.sh
+      - name: Установка Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+
+      - name: Установка зависимостей
+        run: pip install pytest
+
+      - name: Запуск тестов
+        run: pytest test_app.py
